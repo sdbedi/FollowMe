@@ -26,4 +26,4 @@ const store = createStore(combinedReducers)
 export default store;
 
 
-export const exportPulseData = pulseData;
+export const exportPulseData = pulseData; //new variable created for export to make pulseData available for testing

@@ -3,11 +3,8 @@ import { exportPulseData } from './client/src/store.jsx'
 var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
 
 var assert = require('assert');
-describe('Reducers', function() {
+describe('Reducers', function() { //TODO implement tests for dispatchers
   describe('pulseData', function() {
-    // it('should preserve the original state', function() { //run the function, then check whether the imput is mutated
-    //   //should be handled by deepFreeze
-    // });
     describe('UNDEFINED STATE', function() {
       it('sets a default state if none is provided', function() {
         assert.deepEqual([0, 1], pulseData(undefined, {type: 'INCREMENT'}))      
