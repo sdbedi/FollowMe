@@ -1,21 +1,6 @@
 const deepFreeze = require('deep-freeze')
-const store = require ('./client/src/store.jsx')
-
-const pulseData = (state = [0], action) => {
-  let last = state[state.length-1];
-  switch (action.type) {
-    case 'INCREMENT':
-      return state.concat([++last])
-    case 'DECREMENT':
-      if(last !== 0){
-      return state.concat([--last])
-      } 
-      return state.concat([0]);
-    default:
-      return state;
-  }
-}
-  //pulseData
+import { exportPulseData } from './client/src/store.jsx'
+var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
 
 var assert = require('assert');
 describe('Reducers', function() {
@@ -27,7 +12,7 @@ describe('Reducers', function() {
       it('sets a default state if none is provided', function() {
         assert.deepEqual([0, 1], pulseData(undefined, {type: 'INCREMENT'}))      
       });
-    })
+    });
 
     describe('INCREMENT', function() {
       beforeEach(function(){

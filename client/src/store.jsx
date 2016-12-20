@@ -14,7 +14,7 @@ const pulseData = (state = [0], action) => {
     default:
       return state
   }
-}
+;}
 
 // store all reducers in one variable
 const combinedReducers = combineReducers({
@@ -23,4 +23,7 @@ const combinedReducers = combineReducers({
 
 const store = createStore(combinedReducers)
 
-export default store
+export default store;
+
+
+export const exportPulseData = pulseData;
