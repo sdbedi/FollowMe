@@ -61,7 +61,7 @@ describe('Reducers', function() {
         var pulseTest = pulseData(testState, {type: 'DECREMENT'});
         var expectedAnswer = [1, 0, 0]
         deepFreeze(testState); // don't allow testState to be overwritten
-        assert.equal(expectedAnswer, pulseTest );
+        assert.deepEqual(expectedAnswer, pulseTest );
       });
     });
 
