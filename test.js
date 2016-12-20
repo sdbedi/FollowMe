@@ -58,9 +58,10 @@ describe('Reducers', function() {
 
       it('pushes 0 when decrementing from 0', function() {
         var testState = [1, 0];
-        
+        var pulseTest = pulseData(testState, {type: 'DECREMENT'});
+        var expectedAnswer = [1, 0, 0]
         deepFreeze(testState); // don't allow testState to be overwritten
-        assert.equal([1, 0, 0], pulseData(testState, {type: 'DECREMENT'}));
+        assert.equal(expectedAnswer, pulseTest );
       });
     });
 
