@@ -1,4 +1,5 @@
 const deepFreeze = require('deep-freeze')
+const store = require ('./client/src/store.jsx')
 
 const pulseData = (state = [0], action) => {
   let last = state[state.length-1];
@@ -22,19 +23,25 @@ describe('Reducers', function() {
     // it('should preserve the original state', function() { //run the function, then check whether the imput is mutated
     //   //should be handled by deepFreeze
     // });
+    describe('UNDEFINED STATE', function() {
+      it('sets a default state if none is provided', function() {
+        assert.deepEqual([0, 1], pulseData(undefined, {type: 'INCREMENT'}))      
+      });
+    })
+
     describe('INCREMENT', function() {
       beforeEach(function(){
       var testState = [1,2,3,4,5], testStateLength = testState.length
       deepFreeze(testState); // don't allow testState to be overwritten
     });
       
-      it('last value should be one greater than the immediately preceding', function() {
+      it('creates a last value one greater than the second to last value', function() {
         var testState = [1,2,3,4,5], testStateLength = testState.length
         deepFreeze(testState); // don't allow testState to be overwritten
         assert.equal(6, pulseData(testState, {type: 'INCREMENT'})[testStateLength])
       });
 
-      it('new array should be longer by 1', function() {
+      it('adds one value to the new array', function() {
         var testState = [1,2,3,4,5], testStateLength = testState.length
         deepFreeze(testState); // don't allow testState to be overwritten
         assert.equal(pulseData(testState, {type: 'INCREMENT'}).length, testStateLength+1);
@@ -43,13 +50,13 @@ describe('Reducers', function() {
     });
 
     describe('DECREMENT', function() {
-      it('last value should be one less than the immediately preceding', function() {
+      it('creates a last value one less than the second to last value', function() {
         var testState = [1,2,3,4,5], testStateLength = testState.length
         deepFreeze(testState); // don't allow testState to be overwritten
         assert.equal(4, pulseData(testState, {type: 'DECREMENT'})[testStateLength])      
       });
 
-      it('new array should be longer by 1', function() {
+      it('adds one value to the new array', function() {
         var testState = [1,2,3,4,5], testStateLength = testState.length
         let lengthBefore = testState.length;
         deepFreeze(testState); // don't allow testState to be overwritten
